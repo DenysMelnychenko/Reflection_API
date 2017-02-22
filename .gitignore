@@ -1,0 +1,11 @@
+# Output
+out/
+bin/
+*.class
+
+# Intelij
+*.iml
+.idea
+
+# OS
+.DS_Store
