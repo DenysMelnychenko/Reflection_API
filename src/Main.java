@@ -4,8 +4,6 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Collection;
-
-import static java.lang.reflect.Modifier.INTERFACE;
 import static java.lang.reflect.Modifier.isFinal;
 import static java.lang.reflect.Modifier.isStatic;
 
@@ -21,8 +19,9 @@ public class Main {
 
         System.out.println("All Fields");
         for (Field field : fields) {
+            field.setAccessible(true);
             System.out.println("Modifier: " + Modifier.toString(field.getModifiers()) + " " +
-                    "Type: " + field.getType() + " " + "Name: " + field.getName());
+                    "Type: " + field.getType() + " " + "Name: " + field.getName() + " " + "Value is: " + field.get(user));
         }
 
         System.out.println();
@@ -34,11 +33,12 @@ public class Main {
         }
 
         System.out.println();
-        System.out.println("Final field");
+
         for (Field field : fields) {
             if (isFinal(field.getModifiers())) {
-                setFinalStatic(field, "10.10.1985");
-                System.out.println("new modificator value: " + Modifier.toString(field.getModifiers()));
+                System.out.println("Final field: " + field.getName() );
+                field.set(user, "11.11.1989");
+                System.out.println("new modifier value: " + Modifier.toString(field.getModifiers()));
                 System.out.println(field.get(user));
             }
         }
@@ -47,23 +47,13 @@ public class Main {
         for (Method method : methods) {
             Annotation[] annotations = method.getDeclaredAnnotations();
             for(Annotation annotation : annotations){
-                if(annotation instanceof Override){
+                if(annotation instanceof Annotation){
                     System.out.println(method.getName());
                 }
             }
 
         }
 
-    }
-
-    static void setFinalStatic(Field field, Object newValue) throws Exception {
-        field.setAccessible(true);
-
-        Field modifiersField = Field.class.getDeclaredField("modifiers");
-        modifiersField.setAccessible(true);
-        modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
-
-        field.set(user, newValue);
     }
 
     public static Collection<Method> methodWithAnnotation(Class<?> classType, Class<? extends Annotation> annotationClass) {

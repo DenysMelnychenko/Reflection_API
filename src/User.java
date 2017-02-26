@@ -39,7 +39,7 @@ public class User {
     public String getBirthday() {
         return birthday;
     }
-    @Override
+    @MyAnnotation(name = "", value = "")
     public String toString() {
         return "User [firstName=" + firstName + ", lastName=" + lastName + ", birthday=" + birthday + "]";
     }
