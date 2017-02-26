@@ -1,3 +1,6 @@
+package com.reflection_api.models;
+
+import com.reflection_api.annotations.MyAnnotation;
 
 public class User {
     private static int id = 1;
@@ -41,6 +44,6 @@ public class User {
     }
     @MyAnnotation(name = "", value = "")
     public String toString() {
-        return "User [firstName=" + firstName + ", lastName=" + lastName + ", birthday=" + birthday + "]";
+        return "com.reflection_api.models.User [firstName=" + firstName + ", lastName=" + lastName + ", birthday=" + birthday + "]";
     }
 }

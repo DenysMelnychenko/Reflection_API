@@ -1,3 +1,11 @@
+package com.reflection_api.main;
+
+import com.reflection_api.annotations.AfterTests;
+import com.reflection_api.annotations.BeforeTests;
+import com.reflection_api.annotations.Ignore;
+import com.reflection_api.annotations.Test;
+import com.reflection_api.models.TestClass;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
@@ -24,15 +32,15 @@ public class TestingLibrary {
         }
         for (Method method : methods) {
             if (method.isAnnotationPresent(Test.class) && method.isAnnotationPresent(Ignore.class)) {
-                System.out.println("Test " + method.getName() + " " + "ignored.");
+                System.out.println("com.reflection_api.annotations.Test " + method.getName() + " " + "ignored.");
             } else if (method.isAnnotationPresent(Test.class)) {
                 try {
                     method.invoke(testExample);
-                    System.out.println("Test " + method.getName() + " " + "passed.");
+                    System.out.println("com.reflection_api.annotations.Test " + method.getName() + " " + "passed.");
                 } catch (IllegalAccessException e) {
-                    System.out.println("Test " + method.getName() + " " + "failed.");
+                    System.out.println("com.reflection_api.annotations.Test " + method.getName() + " " + "failed.");
                 } catch (InvocationTargetException e) {
-                    System.out.println("Test " + method.getName() + " " + "failed.");
+                    System.out.println("com.reflection_api.annotations.Test " + method.getName() + " " + "failed.");
                 }
             }
         }

@@ -1,3 +1,10 @@
+package com.reflection_api.models;
+
+import com.reflection_api.annotations.AfterTests;
+import com.reflection_api.annotations.BeforeTests;
+import com.reflection_api.annotations.Ignore;
+import com.reflection_api.annotations.Test;
+
 public class TestClass {
 
     private Integer a;
